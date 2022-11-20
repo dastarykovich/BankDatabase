@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "задача-TASK_8_CALL",
+      "appliesTo": "TASK_8_CALL.sql",
+      "type": "launch"
+    }
+  ]
+}
