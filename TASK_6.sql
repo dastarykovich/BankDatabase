@@ -4,6 +4,7 @@ USE Bank_db;
 				JOIN SocStatuses ss ON ss.Id=cl.SocStatusId
 				JOIN CreditCard cc ON cc.AccountId=acc.Id
 				;
+
 SELECT ClientName,SumCard FROM(
 SELECT ClientId,SUM(SumCard)AS SumCard FROM(
 	SELECT ClientId,SumCard
@@ -18,6 +19,13 @@ GROUP BY ClientId
 AS RESULT
 JOIN client on client.Id=result.ClientId
 	
- 
-
+-- V2
+ SELECT acc.ClientId,acc.Id,acc.Score,
+CASE WHEN (acc.Score<(SELECT SUM(cc.CashOnCard) FROM CreditCard cc
+WHERE acc.Id = cc.AccountId)) 
+	THEN '0'
+ELSE
+	(acc.score-(SELECT SUM(cc.CashOnCard) FROM Creditcard cc
+	WHERE acc.Id = cc.AccountId))
+	END AS 'available' FROM Account acc
 
