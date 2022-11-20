@@ -1,13 +1,13 @@
-	USE bank_db
-	SELECT *FROM client_account acc JOIN
-			client cl ON acc.client_id=cl.client_id 
-				JOIN soc_statuses ss ON ss.soc_status_id=cl.soc_status_id;
+	USE Bank_db
+	SELECT *FROM Account acc JOIN
+			client cl ON acc.ClientId=cl.Id 
+				JOIN SocStatuses ss ON ss.Id=cl.SocStatusId;
 
-EXEC Increase_cash_on_card_by10$ '2';
+EXEC IncreaseCashOnCardBy10$ '2';
 
 
-	SELECT *FROM client_account acc JOIN
-			client cl ON acc.client_id=cl.client_id 
-				JOIN soc_statuses ss ON ss.soc_status_id=cl.soc_status_id
-				JOIN credit_card cc ON cc.account_id=acc.account_id
+	SELECT *FROM Account acc JOIN
+			Client cl ON acc.ClientId=cl.Id 
+				JOIN SocStatuses ss ON ss.Id=cl.SocStatusId
+				JOIN CreditCard cc ON cc.AccountId=acc.Id
 				;
