@@ -1,13 +1,13 @@
-USE bank_db;
+USE Bank_db;
 
-INSERT INTO soc_statuses
+INSERT INTO SocStatuses
 	VALUES (1,'Unemployed'),
 			(2,'Student'),
 			(3,'Worker'),
 			(4,'Businessman'),
 			(5,'Pensioner');
 
-INSERT INTO client
+INSERT INTO Client
 	VALUES('Jack Jones',3),
 			('John Smith',3),
 			('Joey Williams',1),
@@ -16,19 +16,19 @@ INSERT INTO client
 			('Alfred Maxwel',2),
 			('Gary Goodman',4);
 
-INSERT INTO cities
+INSERT INTO Cities
 		VALUES('New York'),
 				('Albuquerque'),
 				('London'),
 				('Los Angeles'),
 				('Detroit');
-INSERT INTO bank
+INSERT INTO Bank
 		VALUES ('Microsoft'),
 				('American International'),
 				('Mexican People Bank'),
 				('NBC'),
 				('Super bank');
-INSERT INTO filials 
+INSERT INTO Filials 
 		VALUES(1,1),--(Bank_id , City_id)
 				(2,1),
 				(2,1),
@@ -40,7 +40,7 @@ INSERT INTO filials
 				(4,5),
 				(5,1),
 				(5,5);
-INSERT INTO client_account
+INSERT INTO Account
 		VALUES (1,1000,1),--client_id score bank_id
 				(1,500,2),
 				(2,1000,2),
@@ -55,7 +55,7 @@ INSERT INTO client_account
 				(7,15000,2),
 				(7,5000,3)
 
-INSERT INTO credit_card
+INSERT INTO CreditCard
 		VALUES(200,1),--cash_on_card acc_id
 				(500,1),
 				(500,2),

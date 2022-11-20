@@ -1,9 +1,9 @@
-USE bank_db
+USE Bank_db
 
-SELECT* FROM client_account acc
-	JOIN credit_card cc ON acc.account_id=cc.account_id
+SELECT* FROM Account acc
+	JOIN CreditCard cc ON acc.Id=cc.AccountId
 
-	EXEC Increase_cash_on_card_by_cash 16,16000;
+	EXEC IncreaseCashOnCardByCash 1,1;
 
-SELECT* FROM client_account acc
-	JOIN credit_card cc ON acc.account_id=cc.account_id
+SELECT* FROM Account acc
+	JOIN CreditCard cc ON acc.Id=cc.AccountId

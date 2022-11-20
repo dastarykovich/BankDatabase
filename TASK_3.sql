@@ -1,13 +1,13 @@
-USE bank_db;
-SELECT  * FROM client_account acc  JOIN
-	credit_card cc on  cc.account_id=acc.account_id
+USE Bank_db;
+SELECT  * FROM Account acc  JOIN
+	CreditCard cc on  cc.AccountId=acc.Id
 
 	 
 
-SELECT account_id,score-sum_card AS Differance
+SELECT AccountId,Score-SumCard AS Differance
 FROM(
-SELECT  cc.account_id,acc.score ,SUM(cc.cash_on_card) AS sum_card FROM client_account acc  JOIN
-  credit_card cc on  cc.account_id=acc.account_id 
-  GROUP BY cc.account_id, acc.score
-  HAVING SUM(cc.cash_on_card)!=acc.score
+SELECT  cc.AccountId,acc.Score ,SUM(cc.CashOnCard) AS SumCard FROM Account acc  JOIN
+  CreditCard cc on  cc.AccountId=acc.Id 
+  GROUP BY cc.AccountId, acc.Score
+  HAVING SUM(cc.CashOnCard)!=acc.Score
  )AS results

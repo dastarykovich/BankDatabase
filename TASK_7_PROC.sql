@@ -1,22 +1,22 @@
-USE bank_db;
-DROP PROCEDURE Increase_cash_on_card_by_cash;
+USE Bank_db;
+DROP PROCEDURE IncreaseCashOnCardByCash;
 GO 
-	CREATE PROCEDURE Increase_cash_on_card_by_cash (@cash INT,@card_id INT)
+	CREATE PROCEDURE IncreaseCashOnCardByCash (@cash INT,@card_id INT)
 		AS 
 		BEGIN TRANSACTION
-		UPDATE credit_card
+		UPDATE CreditCard
 
-			SET cash_on_card=cash_on_card+@cash	
-		where card_id=@card_id
-		IF((SELECT acc.score 
-			FROM client_account acc JOIN
-				credit_card cc ON  cc.account_id=acc.account_id
-				WHERE  cc.card_id=@card_id)
+			SET CashOnCard=CashOnCard+@cash	
+		where Id=@card_id
+		IF((SELECT acc.Score 
+			FROM Account acc JOIN
+				CreditCard cc ON  cc.AccountId=acc.Id
+				WHERE  cc.Id=@card_id)
 				>=
-				(SELECT SUM(cash_on_card)
-				FROM credit_card
-				WHERE card_id=@card_id
-				GROUP BY account_id)
+				(SELECT SUM(CashOnCard)
+				FROM CreditCard
+				WHERE Id=@card_id
+				GROUP BY AccountId)
 			)
 		COMMIT TRANSACTION
 		ELSE ROLLBACK

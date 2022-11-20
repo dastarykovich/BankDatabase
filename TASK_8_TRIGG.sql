@@ -1,19 +1,19 @@
-CREATE TRIGGER updating_score 
-ON client_account 
+CREATE TRIGGER UpdatingScore 
+ON Account 
 INSTEAD OF UPDATE 
 AS 
 	
 IF (
-		(SELECT i.score
+		(SELECT i.Score
     FROM inserted AS i)>=
-		(SELECT SUM(cc.cash_on_card)
-			FROM credit_card  cc
-			JOIN inserted i on cc.account_id=i.account_id 
-			WHERE (cc.account_id=i.account_id)
-				GROUP BY cc.account_id)
+		(SELECT SUM(cc.CashOnCard)
+			FROM CreditCard  cc
+			JOIN inserted i on cc.AccountId=i.Id 
+			WHERE (cc.AccountId=i.Id)
+				GROUP BY cc.AccountId)
 ) 
-			Update client_account
-	SET score=(SELECT i.score
+			Update Account
+	SET Score=(SELECT i.Score
 			FROM inserted AS i)
-	WHERE account_id=(SELECT i.account_id
+	WHERE Id=(SELECT i.Id
 			FROM inserted AS i);

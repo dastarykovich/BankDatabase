@@ -1,19 +1,19 @@
-USE bank_db;
-select *FROM soc_statuses;
-SELECT * FROM client JOIN soc_statuses
-	ON client.soc_status_id=soc_statuses.soc_status_id;
-SELECT *FROM cities;
-SELECT *FROM bank b JOIN filials f
-	ON b.bank_id=f.bank_id
+USE Bank_db;
+select *FROM SocStatuses;
+SELECT * FROM Client JOIN SocStatuses
+	ON Client.SocStatusId=SocStatuses.Id;
+SELECT *FROM Cities;
+SELECT *FROM Bank b JOIN Filials f
+	ON b.Id=f.BankId
 		JOIN cities c 
-			ON c.city_id=f.city_id;
+			ON c.Id=f.CityId;
 
-SELECT * FROM client_account a JOIN client c
-	ON a.client_id=c.client_id
+SELECT * FROM Account a JOIN client c
+	ON a.ClientId=c.Id
 		JOIN bank b
-			ON b.bank_id=a.bank_id;
+			ON b.Id=a.BankId;
 
-SELECT *FROM credit_card cc JOIN client_account ca
-	on cc.account_id=ca.account_id
+SELECT *FROM CreditCard cc JOIN Account ca
+	on cc.AccountId=ca.Id
 		JOIN client cl 
-			on cl.client_id=ca.client_id;
+			on cl.Id=ca.ClientId;

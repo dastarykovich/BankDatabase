@@ -1,6 +1,6 @@
-USE bank_db;
-SELECT bank_name FROM bank b JOIN
-	filials f ON b.bank_id=f.bank_id
-		JOIN cities c ON f.city_id=c.city_id
-			where c.city_name='New York'
-			GROUP BY bank_name;
+USE Bank_db;
+SELECT BankName FROM Bank b JOIN
+	Filials f ON b.Id=f.BankId
+		JOIN Cities c ON f.CityId=c.Id
+			where c.CityName='New York'
+			GROUP BY BankName;

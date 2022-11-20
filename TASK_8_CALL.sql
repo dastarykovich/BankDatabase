@@ -1,24 +1,24 @@
-CREATE TRIGGER update_cash
-ON credit_card
+CREATE TRIGGER UpdateCash
+ON CreditCard
 INSTEAD OF UPDATE 
 AS 
 
 IF 
-		(SELECT TOP 1 acc.score
-    FROM client_account AS acc
-		WHERE(acc.account_id=(SELECT i.account_id
+		(SELECT TOP 1 Acc.Score
+    FROM Account AS acc
+		WHERE(acc.Id=(SELECT i.AccountId
 			FROM inserted AS i) )
-		ORDER BY acc.score
+		ORDER BY acc.Score
 		)>=
-		(SELECT SUM(cc.cash_on_card)+(SELECT cash_on_card FROM inserted)
-			FROM credit_card  cc
-			WHERE (cc.account_id=(SELECT i.account_id
+		(SELECT SUM(cc.CashOnCard)+(SELECT CashOnCard FROM inserted)
+			FROM CreditCard  cc
+			WHERE (cc.AccountId=(SELECT i.AccountId
 									FROM inserted AS i))
-			AND (cc.card_id!=(SELECT i.card_id
+			AND (cc.Id!=(SELECT i.Id
 									FROM inserted AS i))
-				GROUP BY cc.account_id)
-Update credit_card
-	SET cash_on_card=(SELECT i.cash_on_card
+				GROUP BY cc.AccountId)
+Update CreditCard
+	SET CashOnCard=(SELECT i.CashOnCard
 			FROM inserted AS i)
-	WHERE card_id=(SELECT i.card_id
+	WHERE Id=(SELECT i.Id
 			FROM inserted AS i)
